@@ -193,78 +193,96 @@ body {
 /* =========================================
    MOBILE RESPONSIVE (DÀNH CHO ĐIỆN THOẠI)
    ========================================= */
+/* =========================================
+   MOBILE RESPONSIVE (ĐÃ FIX LỖI CHE NÚT & INTRO)
+   ========================================= */
 @media (max-width: 768px) {
 
-    /* 1. Sửa lại Intro cho nhỏ gọn */
+    /* --- 1. SỬA LỖI INTRO KHÔNG TỐI --- */
+    #intro-overlay {
+        /* Dùng background màu đen có độ mờ 85% trực tiếp */
+        background-color: rgba(0, 0, 0, 0.85) !important; 
+    }
+    .intro-bg {
+        opacity: 0.2 !important; /* Làm mờ ảnh nền hơn nữa */
+    }
     .intro-content h1 { font-size: 36px; }
-    .intro-content p { font-size: 16px; margin-bottom: 20px; }
-    .btn-start { padding: 10px 24px; font-size: 16px; }
-
-    /* 2. Sửa bố cục Slide: Chuyển từ Ngang sang Dọc */
+    .intro-content p { font-size: 16px; margin-bottom: 20px; color: #e6d7a8; }
+    
+    /* --- 2. SỬA BỐ CỤC SLIDE DỌC --- */
     .slide, .slide.active {
-        display: flex !important; /* Bỏ Grid, dùng Flex */
-        flex-direction: column;   /* Xếp chồng lên nhau */
+        display: flex !important;
+        flex-direction: column;
+        height: 100vh; /* Chiều cao full màn hình */
+        overflow: hidden; /* Không cho cuộn toàn trang, chỉ cuộn nội dung */
     }
 
-    /* Phần Ảnh (Image Side) đưa lên trên */
+    /* Phần Ảnh (Trên) */
     .image-side {
-        order: 1; /* Ưu tiên hiển thị trước */
+        order: 1;
         width: 100%;
-        height: 45vh; /* Chiếm 45% chiều cao màn hình */
+        height: 40vh; /* Ảnh chiếm 40% màn hình */
+        flex-shrink: 0; /* Không cho co lại */
     }
 
-    /* Phần Chữ (Content Side) đưa xuống dưới */
+    /* Phần Chữ (Dưới) - ĐÃ FIX LỖI BỊ CHE NÚT */
     .content-side {
         order: 2;
         width: 100%;
-        height: 55vh; /* Chiếm phần còn lại */
-        padding: 20px 25px 80px 25px; /* Căn chỉnh lề, chừa chỗ cho menu dưới */
-        justify-content: flex-start; /* Chữ đẩy lên trên cho dễ đọc */
-        overflow-y: auto; /* Nếu chữ dài quá thì cho cuộn */
+        height: 60vh; /* Chiếm 60% còn lại */
+        
+        /* QUAN TRỌNG: Căn lề */
+        padding: 20px 20px; 
+        
+        /* QUAN TRỌNG: "Độn" đáy lên 80px để tránh bị thanh menu che mất nút */
+        padding-bottom: 100px !important; 
+        
+        justify-content: flex-start; /* Dồn nội dung lên trên */
+        overflow-y: auto; /* Cho phép cuộn riêng phần chữ nếu dài */
     }
 
-    /* Chỉnh cỡ chữ nhỏ lại cho vừa điện thoại */
-    .content-side h1 { font-size: 24px; margin-bottom: 10px; }
-    .description { font-size: 15px; margin-bottom: 20px; }
-    
-    /* Nút bấm nhỏ lại */
+    .content-side h1 { font-size: 24px; margin-bottom: 8px; line-height: 1.3; }
+    .description { font-size: 14px; margin-bottom: 15px; }
+
+    /* Nút bấm to dễ ấn */
     .btn-secondary, .btn-next-big {
-        padding: 8px 16px;
+        padding: 10px 0; /* Tăng vùng bấm */
         font-size: 14px;
-        width: 100%; /* Nút full chiều ngang bấm cho dễ */
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px; /* Tách các nút ra */
+        display: block;
+    }
+    .action-buttons { flex-direction: column; gap: 0; width: 100%; margin-bottom: 10px;}
+
+    /* --- 3. FIX MENU MASONRY (Slide 4) --- */
+    .masonry-layout { column-count: 1; }
+    #slide-4.active { 
+        padding: 15px 15px 80px 15px; /* Chừa chỗ cho nút đóng và đáy */
+    }
+    .btn-close-menu { 
+        top: auto; bottom: 90px; /* Đưa nút đóng xuống dưới cho dễ bấm bằng ngón cái */
+        right: 20px; 
+        background: #a61e1b; /* Màu đỏ cho nổi */
+        padding: 10px 20px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    /* --- 4. THANH NAV DƯỚI --- */
+    .bottom-nav-container {
+        padding: 0 10px;
+        height: 65px; /* Cao hơn xíu cho dễ bấm */
+        background: #fff;
+        border-top: 1px solid #ddd;
+    }
+    .left-label { display: none; }
+    .nav-tabs { width: 100%; justify-content: space-between; gap: 0; }
+    .tab-item { 
+        font-size: 13px; 
+        padding: 22px 5px; /* Tăng vùng bấm */
+        flex: 1; /* Chia đều 3 phần */
         text-align: center;
     }
-    .action-buttons { flex-direction: column; gap: 10px; width: 100%; }
-
-    /* 3. Sửa Menu Masonry (Slide 4) -> Về 1 cột */
-    .masonry-layout {
-        column-count: 1; /* Chỉ hiện 1 cột ảnh dọc */
-    }
-    #slide-4.active { padding: 10px; }
-    .btn-close-menu { top: 10px; right: 10px; font-size: 12px; }
-
-    /* 4. Sửa Thanh Menu Dưới Đáy (Bottom Nav) */
-    .bottom-nav-container {
-        padding: 0 15px;
-        height: 60px;
-        justify-content: space-between;
-    }
-
-    /* Ẩn chữ "BEPBO" to bên trái đi cho đỡ chật */
-    .left-label { display: none; }
-
-    /* Căn lại các Tab */
-    .nav-tabs {
-        width: 100%;
-        display: flex;
-        justify-content: space-around; /* Chia đều khoảng cách */
-        gap: 0;
-    }
-
-    .tab-item {
-        font-size: 14px;
-        padding: 20px 0;
-    }
-    /* Ẩn số thứ tự (1., 2.) đi cho gọn */
     .tab-num { display: none; }
 }
+
