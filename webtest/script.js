@@ -23,7 +23,7 @@ function showIntro() {
 
 // 3. Đóng Menu Masonry
 function closeMenu() {
-    document.getElementById('slide-4').classList.remove('active');
+    goToSlide(2); 
 }
 
 // 4. Chuyển Slide
