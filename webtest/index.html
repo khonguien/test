@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEPBO | Quán Bò Xèo</title>
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <img src="Picture2.jpg" class="intro-bg" alt="Intro Background">
+        
+        <div class="intro-content">
+            <h1>BEPBO</h1>
+            <p>Quán Bò Xèo - Hương Vị Độc Đáo</p>
+            <button class="btn-start" onclick="closeIntro()">KHÁM PHÁ NGAY</button>
+        </div>
+    </div>
+
+    <main class="main-container">
+        
+        <div class="slider-wrapper">
+            <div class="slide active" id="slide-0">
+                <div class="content-side">
+                    <h1>Điểm đến ẩm thực: <span class="red-text">BEPBO Quán</span></h1>
+                    <p class="description">
+                        180A Pasteur, Bến Nghé, Quận 1, TP.HCM.<br>
+                        Thưởng thức bò xèo nóng hổi trong không gian ấm cúng, đậm chất riêng.
+                    </p>
+                    <button class="btn-next-big" onclick="nextSlide()">Tiếp theo</button>
+                </div>
+                <div class="image-side">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.455720042366!2d106.69559831526054!3d10.77636326214132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f3855555555%3A0x5555555555555555!2s180A%20Pasteur%2C%20B%E1%BA%BFn%20Ngh%C3%A9%2C%20Qu%E1%BA%ADn%201%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1svi!2s!4v16xxxxxxxxxxx!5m2!1svi!2s" width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="slide" id="slide-1">
+                <div class="content-side">
+                    <h1>Không gian <span class="red-text">Ấm Cúng & Hiện Đại</span></h1>
+                    <p class="description">
+                        Sự kết hợp tinh tế giữa kiến trúc hiện đại và nét mộc mạc, tạo nên một không gian thưởng thức ẩm thực thoải mái và gần gũi.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" onclick="goToSlide(3)">Xem thư viện ảnh</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Tiếp theo</button>
+                </div>
+                <div class="image-side">
+                    <img src="space0.jpg" alt="Không gian bếp mở tại BEPBO">
+                </div>
+            </div>
+
+            <div class="slide" id="slide-2">
+                <div class="content-side">
+                    <h1>Hương vị <span class="red-text">Bò Xèo Đặc Biệt</span></h1>
+                    <p class="description">
+                        Thịt bò tươi ngon được chế biến trên chảo nóng, giữ trọn hương vị đậm đà, ăn kèm với các loại sốt độc quyền của quán.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary" onclick="goToSlide(4)">Khám phá thực đơn</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Tiếp theo</button>
+                </div>
+                <div class="image-side">
+                    <img src="dish0.jpg" alt="Món bò xèo hấp dẫn">
+                </div>
+            </div>
+
+            <div class="slide" id="slide-3">
+                <div class="content-side">
+                    <h1>Góc nhìn <span class="red-text">BEPBO</span></h1>
+                    <p class="description">
+                        Lưu giữ những khoảnh khắc tuyệt vời của thực khách cùng hương vị bò xèo trứ danh.
+                    </p>
+                    <div class="action-buttons">
+                      <button class="btn-secondary" onclick="window.open('https://www.instagram.com/bepbo.sg/?hl=en', '_blank')">Instagram</button>
+                    </div>
+                    <button class="btn-next-big" onclick="goToSlide(0)">Quay lại đầu trang</button>
+                </div>
+                
+                <div class="image-side">
+                    <div class="gallery-grid">
+                        <img src="space1.jpg" alt="Gallery 1">
+                        <img src="space2.jpg" alt="Gallery 2">
+                        <img src="space3.jpg" alt="Gallery 3">
+                        <img src="space4.jpg" alt="Gallery 4">
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" id="slide-4">
+                
+                <button class="btn-close-menu" onclick="closeMenu()">× Đóng Menu</button>
+
+                <div class="masonry-layout">
+                    <div class="masonry-item"><img src="menu1.jpg" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu2.jpg" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu3.png" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu4.png" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu5.png" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu6.png" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu8.png" alt="Menu"></div>
+                    <div class="masonry-item"><img src="menu11.png" alt="Menu"></div>
+                    </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav-container">
+            <div class="left-label" onclick="showIntro()">
+                <img src="logo.jpg" width="38" height="38" alt="Logo BEPBO">
+                <span>BEPBO</span>
+            </div>
+
+            <div class="nav-tabs">
+                <div class="tab-item active" onclick="goToSlide(0)">
+                    <span class="tab-num">1.</span> <span class="tab-name">Địa Chỉ</span>
+                </div>
+                <div class="tab-item" onclick="goToSlide(1)">
+                    <span class="tab-num">2.</span> <span class="tab-name">Không Gian</span>
+                </div>
+                <div class="tab-item" onclick="goToSlide(2)">
+                    <span class="tab-num">3.</span> <span class="tab-name">Món Ăn</span>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
