@@ -42,7 +42,9 @@ body {
     filter: sepia(0.3);
 }
 
-.intro-content { text-align: center; }
+.intro-content { text-align: center; 
+               position: relative;
+    z-index: 10;}
 
 .intro-content h1 { 
     font-family: 'Segoe UI Black', sans-serif;
@@ -346,3 +348,4 @@ body {
     .btn-close-menu { top: 10px; right: 10px; font-size: 12px; }
 
 }
+
