@@ -190,11 +190,81 @@ body {
     cursor: pointer;
 }
 
-/* Responsive cho màn hình nhỏ */
-@media (max-width: 1000px) {
-    .slide.active { flex-direction: column-reverse; overflow-y: auto; }
-    .content-side, .image-side { width: 100%; padding: 0; text-align: center; }
-    .content-side h1 { font-size: 32px; margin-top: 20px; }
-    .action-buttons { justify-content: center; }
-    .bottom-nav-container { display: none; } /* Ẩn nav dưới trên mobile cho gọn */
+/* =========================================
+   MOBILE RESPONSIVE (DÀNH CHO ĐIỆN THOẠI)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* 1. Sửa lại Intro cho nhỏ gọn */
+    .intro-content h1 { font-size: 36px; }
+    .intro-content p { font-size: 16px; margin-bottom: 20px; }
+    .btn-start { padding: 10px 24px; font-size: 16px; }
+
+    /* 2. Sửa bố cục Slide: Chuyển từ Ngang sang Dọc */
+    .slide, .slide.active {
+        display: flex !important; /* Bỏ Grid, dùng Flex */
+        flex-direction: column;   /* Xếp chồng lên nhau */
+    }
+
+    /* Phần Ảnh (Image Side) đưa lên trên */
+    .image-side {
+        order: 1; /* Ưu tiên hiển thị trước */
+        width: 100%;
+        height: 45vh; /* Chiếm 45% chiều cao màn hình */
+    }
+
+    /* Phần Chữ (Content Side) đưa xuống dưới */
+    .content-side {
+        order: 2;
+        width: 100%;
+        height: 55vh; /* Chiếm phần còn lại */
+        padding: 20px 25px 80px 25px; /* Căn chỉnh lề, chừa chỗ cho menu dưới */
+        justify-content: flex-start; /* Chữ đẩy lên trên cho dễ đọc */
+        overflow-y: auto; /* Nếu chữ dài quá thì cho cuộn */
+    }
+
+    /* Chỉnh cỡ chữ nhỏ lại cho vừa điện thoại */
+    .content-side h1 { font-size: 24px; margin-bottom: 10px; }
+    .description { font-size: 15px; margin-bottom: 20px; }
+    
+    /* Nút bấm nhỏ lại */
+    .btn-secondary, .btn-next-big {
+        padding: 8px 16px;
+        font-size: 14px;
+        width: 100%; /* Nút full chiều ngang bấm cho dễ */
+        text-align: center;
+    }
+    .action-buttons { flex-direction: column; gap: 10px; width: 100%; }
+
+    /* 3. Sửa Menu Masonry (Slide 4) -> Về 1 cột */
+    .masonry-layout {
+        column-count: 1; /* Chỉ hiện 1 cột ảnh dọc */
+    }
+    #slide-4.active { padding: 10px; }
+    .btn-close-menu { top: 10px; right: 10px; font-size: 12px; }
+
+    /* 4. Sửa Thanh Menu Dưới Đáy (Bottom Nav) */
+    .bottom-nav-container {
+        padding: 0 15px;
+        height: 60px;
+        justify-content: space-between;
+    }
+
+    /* Ẩn chữ "BEPBO" to bên trái đi cho đỡ chật */
+    .left-label { display: none; }
+
+    /* Căn lại các Tab */
+    .nav-tabs {
+        width: 100%;
+        display: flex;
+        justify-content: space-around; /* Chia đều khoảng cách */
+        gap: 0;
+    }
+
+    .tab-item {
+        font-size: 14px;
+        padding: 20px 0;
+    }
+    /* Ẩn số thứ tự (1., 2.) đi cho gọn */
+    .tab-num { display: none; }
 }
