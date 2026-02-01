@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Edge | What's New</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+</head>
+<body>
+
+    <main class="main-container">
+        
+        <div class="slider-wrapper">
+            
+            <div class="slide active" id="slide-0">
+                <div class="content-side">
+                    <h1>Browse the web together with <span class="blue-text">Edge Workspaces</span></h1>
+                    <p class="description">
+                        Stay focused and organized with Workspaces that help you separate your browsing tasks into dedicated windows. Collaborate with others and complete specific tasks, such as shopping or trip planning. Tabs and files are automatically saved and updated in real-time.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary">Try now</button>
+                        <button class="btn-secondary">Learn more</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Next</button>
+                </div>
+                <div class="image-side">
+                    <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW16Pxo?ver=4853" alt="Workspaces UI">
+                </div>
+            </div>
+
+            <div class="slide" id="slide-1">
+                <div class="content-side">
+                    <h1>Achieve more with <span class="blue-text">Copilot in Edge</span></h1>
+                    <p class="description">
+                        Your AI-powered assistant is built right into the browser. Summarize web pages, draft emails, and get answers to complex questions without leaving your tab.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary">Try Copilot</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Next</button>
+                </div>
+                <div class="image-side">
+                    <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW16TN0?ver=8013" alt="Copilot UI">
+                </div>
+            </div>
+
+            <div class="slide" id="slide-2">
+                <div class="content-side">
+                    <h1>Stay safe with <span class="blue-text">Enhanced Security</span></h1>
+                    <p class="description">
+                        Microsoft Edge offers the highest rated protection against phishing and malware on Windows. Browse with confidence knowing your data is secure.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary">View settings</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Next</button>
+                </div>
+                <div class="image-side">
+                    <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RW16jXh?ver=6712" alt="Security UI">
+                </div>
+            </div>
+
+            <div class="slide" id="slide-3">
+                <div class="content-side">
+                    <h1>Save money with <span class="blue-text">Edge Shopping</span></h1>
+                    <p class="description">
+                        We automatically find coupons and apply them to your order. Compare prices across retailers to ensure you're getting the best deal.
+                    </p>
+                    <div class="action-buttons">
+                        <button class="btn-secondary">Start shopping</button>
+                    </div>
+                    <button class="btn-next-big" onclick="nextSlide()">Next</button>
+                </div>
+                <div class="image-side">
+                    <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4qH1v?ver=2409" alt="Shopping UI">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="bottom-nav-container">
+            <div class="left-label">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Microsoft_Edge_logo_%282019%29.svg" width="24" alt="logo">
+                <span>Here's what's new in Microsoft Edge</span>
+            </div>
+
+            <div class="nav-tabs">
+                <div class="tab-item active" onclick="goToSlide(0)">
+                    <span class="tab-num">1.</span>
+                    <span class="tab-name">Workspaces</span>
+                </div>
+                <div class="tab-item" onclick="goToSlide(1)">
+                    <span class="tab-num">2.</span>
+                    <span class="tab-name">Copilot</span>
+                </div>
+                <div class="tab-item" onclick="goToSlide(2)">
+                    <span class="tab-num">3.</span>
+                    <span class="tab-name">Security</span>
+                </div>
+                <div class="tab-item" onclick="goToSlide(3)">
+                    <span class="tab-num">4.</span>
+                    <span class="tab-name">Shopping</span>
+                </div>
+            </div>
+
+            <div class="search-area">
+                <input type="text" placeholder="Search the web">
+                <button class="search-btn">🔍</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
