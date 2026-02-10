@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lì Xì Cho Ánh Lê</title>
+    <title>Lì Xì Netflix</title>
     <link rel="icon" href="logo.jpg">
-
     <style>
         /* --- CẤU HÌNH --- */
         :root {
@@ -21,10 +20,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 110vh;
+            height: 100vh;
             background-color: var(--bg-color);
             margin: 0;
-            font-family: 'Courier New', Courier, monospace; /* Font kiểu code/máy tính */
+            font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
         }
 
@@ -54,7 +53,7 @@
             width: 100%;
             height: 100%;
             background-color: var(--flap-color);
-            clip-path: polygon(0 0, 50% 25%, 100% 0);
+            clip-path: polygon(0 0, 50% 20%, 100% 0);
             transform-origin: top;
             transition: transform var(--anim-speed) ease-in-out, z-index var(--anim-speed);
             z-index: 20;
@@ -77,15 +76,15 @@
             left: 50%;
             transform: translateX(-50%);
             width: 90%;
-            height: 100%; /* Cao hơn chút để chứa nút */
-            background: #141414; /* Nền đen Netflix */
+            height: 100%;
+            background: #141414;
             color: #fff;
             border: 1px solid #333;
             border-radius: 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Canh giữa nội dung */
+            justify-content: center;
             text-align: center;
             transition: bottom var(--anim-speed) ease-in-out;
             z-index: 5;
@@ -123,37 +122,51 @@
             background-color: #f40612;
         }
 
-        /* --- POPUP ẢNH (MODAL) --- */
+        /* --- POPUP 2 ẢNH (MODAL) --- */
         .image-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9); /* Nền tối thui */
-            display: none; /* Ẩn mặc định */
+            background-color: rgba(0, 0, 0, 0.9);
+            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 9999; /* Đè lên tất cả */
+            z-index: 9999;
             flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .image-modal.active {
-            display: flex; /* Hiện lên khi có class active */
+            display: flex;
         }
 
-        .image-modal img {
-            max-width: 90%;
-            max-height: 80%;
+        /* Container chứa 2 ảnh để có thể cuộn nếu ảnh dài */
+        .modal-content-scroll {
+            display: flex;
+            flex-direction: column; /* Xếp dọc */
+            align-items: center;
+            max-height: 90vh; /* Giới hạn chiều cao */
+            overflow-y: auto; /* Cho phép cuộn dọc nếu ảnh quá dài */
+            width: 100%;
+            gap: 15px; /* Khoảng cách giữa 2 ảnh */
+        }
+
+        .modal-content-scroll img {
+            max-width: 100%; /* Ảnh tự co theo màn hình */
+            max-height: 60vh; /* Mỗi ảnh không cao quá 60% màn hình */
             border: 2px solid #fff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
             border-radius: 8px;
+            object-fit: contain;
         }
 
         .modal-note {
             color: #ccc;
             margin-top: 10px;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         /* --- TRẠNG THÁI MỞ --- */
@@ -180,8 +193,14 @@
 <body>
 
     <div class="image-modal" id="popup" onclick="closePopup()">
-        <img src="note.jpg" alt="Secret Image">
-        <p class="modal-note">(Bấm vào đâu cũng được để tắt)</p>
+        <div class="modal-content-scroll">
+            
+            <img src="note2.jpg" alt="Anh 1">
+            
+            <img src="note.jpg" alt="Anh 2">
+            
+            <p class="modal-note">(Bấm ra ngoài để tắt)</p>
+        </div>
     </div>
 
     <div class="envelope-wrapper" id="envelope" onclick="toggleEnvelope()">
@@ -194,13 +213,13 @@
             <h2 style="color: #E50914; margin: 0 0 10px 0;">NETFLIX</h2>
             
             <div style="text-align: left; width: 100%; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">
-                <p style="margin: 5px 0; font-size: 0.9rem; color: #aaa;">ID: <span style="color:#fff">banthan@gmail.com</span></p>
-                <p style="margin: 5px 0; font-size: 0.9rem; color: #aaa;">PW: <span style="color:#fff">khongdoipass</span></p>
+                <p style="margin: 5px 0; font-size: 0.7rem; color: #aaa;">User: <span style="color:#fff">Juanmanuelfebles@hotmail.com</span></p>
+                <p style="margin: 5px 0; font-size: 0.7rem; color: #aaa;">Pass: <span style="color:#fff">FEBLES21</span></p>
             </div>
             
-            <p style="font-size: 0.7rem; color: #ffffff;">Cầm Lấy Và Đi Gặp Chồng Liền Cho Tôi</p>
+            <p style="font-size: 0.7rem; color: #ffffff;">Cầm Lấy Và Đi Gặp Chồng Liền Cho Tôi.</p>
 
-            <button class="bonus-btn" onclick="openPopup(event)">NOTE</button>
+            <button class="bonus-btn" onclick="openPopup(event)">Note</button>
         </div>
 
         <div class="envelope-body"></div>
@@ -219,18 +238,15 @@
             envelope.classList.remove('open');
         }
 
-        // Hàm mở Popup ảnh
         function openPopup(event) {
-            event.stopPropagation(); // Ngăn không cho sự kiện click lan ra bao lì xì (để ko bị đóng/mở bao)
+            event.stopPropagation();
             popup.classList.add('active');
         }
 
-        // Hàm đóng Popup ảnh
         function closePopup() {
             popup.classList.remove('active');
         }
     </script>
 
 </body>
-
 </html>
