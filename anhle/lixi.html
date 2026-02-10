@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lì Xì Cho Ánh Lê</title>
+    <link rel="icon" href="logo.jpg">
+
+    <style>
+        /* --- CẤU HÌNH --- */
+        :root {
+            --envelope-width: 300px;
+            --envelope-height: 400px;
+            --envelope-color: #d32f2f;
+            --flap-color: #c62828;
+            --bg-color: #ffebee;
+            --anim-speed: 0.5s;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--bg-color);
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace; /* Font kiểu code/máy tính */
+            overflow: hidden;
+        }
+
+        /* --- BAO LÌ XÌ --- */
+        .envelope-wrapper {
+            position: relative;
+            width: var(--envelope-width);
+            height: var(--envelope-height);
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .envelope-body {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--envelope-color);
+            border-radius: 0 0 10px 10px;
+            z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--flap-color);
+            clip-path: polygon(0 0, 50% 25%, 100% 0);
+            transform-origin: top;
+            transition: transform var(--anim-speed) ease-in-out, z-index var(--anim-speed);
+            z-index: 20;
+        }
+
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #b71c1c;
+            border-radius: 0 0 10px 10px;
+            z-index: 1;
+        }
+
+        /* --- NỘI DUNG (CARD) --- */
+        .content-card {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 100%; /* Cao hơn chút để chứa nút */
+            background: #141414; /* Nền đen Netflix */
+            color: #fff;
+            border: 1px solid #333;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Canh giữa nội dung */
+            text-align: center;
+            transition: bottom var(--anim-speed) ease-in-out;
+            z-index: 5;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Nút mở ảnh popup */
+        .bonus-btn {
+            margin-top: 15px;
+            background-color: #E50914;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .bonus-btn:hover {
+            background-color: #f40612;
+        }
+
+        /* --- POPUP ẢNH (MODAL) --- */
+        .image-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9); /* Nền tối thui */
+            display: none; /* Ẩn mặc định */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Đè lên tất cả */
+            flex-direction: column;
+        }
+
+        .image-modal.active {
+            display: flex; /* Hiện lên khi có class active */
+        }
+
+        .image-modal img {
+            max-width: 90%;
+            max-height: 80%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            border-radius: 8px;
+        }
+
+        .modal-note {
+            color: #ccc;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        /* --- TRẠNG THÁI MỞ --- */
+        .envelope-wrapper.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .content-card {
+            bottom: 120px;
+            z-index: 30;
+        }
+
+        .envelope-wrapper.open .close-btn {
+            display: block;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="image-modal" id="popup" onclick="closePopup()">
+        <img src="note.jpg" alt="Secret Image">
+        <p class="modal-note">(Bấm vào đâu cũng được để tắt)</p>
+    </div>
+
+    <div class="envelope-wrapper" id="envelope" onclick="toggleEnvelope()">
+        <div class="envelope-flap"></div>
+        <div class="envelope-pocket"></div>
+
+        <div class="content-card" id="content">
+            <button class="close-btn" onclick="closeEnvelope(event)">✖</button>
+            
+            <h2 style="color: #E50914; margin: 0 0 10px 0;">NETFLIX</h2>
+            
+            <div style="text-align: left; width: 100%; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">
+                <p style="margin: 5px 0; font-size: 0.9rem; color: #aaa;">ID: <span style="color:#fff">banthan@gmail.com</span></p>
+                <p style="margin: 5px 0; font-size: 0.9rem; color: #aaa;">PW: <span style="color:#fff">khongdoipass</span></p>
+            </div>
+            
+            <p style="font-size: 0.7rem; color: #ffffff;">Cầm Lấy Và Đi Gặp Chồng Liền Cho Tôi</p>
+
+            <button class="bonus-btn" onclick="openPopup(event)">NOTE</button>
+        </div>
+
+        <div class="envelope-body"></div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const popup = document.getElementById('popup');
+
+        function toggleEnvelope() {
+            envelope.classList.add('open');
+        }
+
+        function closeEnvelope(event) {
+            event.stopPropagation();
+            envelope.classList.remove('open');
+        }
+
+        // Hàm mở Popup ảnh
+        function openPopup(event) {
+            event.stopPropagation(); // Ngăn không cho sự kiện click lan ra bao lì xì (để ko bị đóng/mở bao)
+            popup.classList.add('active');
+        }
+
+        // Hàm đóng Popup ảnh
+        function closePopup() {
+            popup.classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
